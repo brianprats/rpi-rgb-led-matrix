@@ -5,16 +5,15 @@ import sys
 import requests
 from rgbmatrix import RGBMatrix, RGBMatrixOptions
 
-myToken='EAAO6Vy3npTsBAGQeL1RpZAVCrISxxtQcYiysdMnNga4Fr13ZCy78wQuc1xVYB1ZAIuVQMP44sGf1JpTVRzg18ai9YVKSkOLaHZAshSxxLMP2bd2mYRXB8rYaxhU9XRQ2FuD57VTFF4WnrcwuaAe8A64vnRp21WOLyRwhPmmt6gZDZD'
-myUrl = 'https://graph.facebook.com/https://www.facebook.com/Thrillist/?fields=engagement'
-head = {'Authorization': 'OAuth {}'.format(myToken)}
-response = requests.get(myUrl, headers=head)
-#print(response.content)
-counts = response.json()['engagement']['count']
-
 class RunText(SampleBase):
     def __init__(self, *args, **kwargs):
         super(RunText, self).__init__(*args, **kwargs)
+        myToken='EAAO6Vy3npTsBAGQeL1RpZAVCrISxxtQcYiysdMnNga4Fr13ZCy78wQuc1xVYB1ZAIuVQMP44sGf1JpTVRzg18ai9YVKSkOLaHZAshSxxLMP2bd2mYRXB8rYaxhU9XRQ2FuD57VTFF4WnrcwuaAe8A64vnRp21WOLyRwhPmmt6gZDZD'
+        myUrl = 'https://graph.facebook.com/https://www.facebook.com/Thrillist/?fields=engagement'
+        head = {'Authorization': 'OAuth {}'.format(myToken)}
+        response = requests.get(myUrl, headers=head)
+        #print(response.content)
+        counts = response.json()['engagement']['count']
         #self.parser.add_argument("-t", "--text", help="The text to scroll on the RGB LED panel", default="Hello world!")
 
     def run(self):
