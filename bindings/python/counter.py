@@ -21,7 +21,8 @@ class Counter(object):
     pos = offscreen_canvas.width
     while True:
       self.get_likes()
-      while time.now() >= 30
+      now = time.time()
+      while now-time.time() <= 30:
           offscreen_canvas.Clear()
           len = graphics.DrawText(offscreen_canvas, font, pos, 10, textColor, self.count)
           pos -= 1
