@@ -21,12 +21,30 @@ class Counter(object):
     font.LoadFont("../../fonts/9x18.bdf")
     textColor = graphics.Color(255, 255, 0)
     pos = 0
+    color_pulse = True
+    i = 0
+    red = 0
+    green = 0
+    blue = 0
     #pos = offscreen_canvas.width
     while True:
       self.get_likes()
       print(self.count)
       start = time.time()
-      while time.time()-start <= 10:
+      while time.time()-start <= 15:
+          if color_pulse == True:
+              if i <= 255:
+                  red = i
+                  blue = 255 - i
+              elif 255 < i <= 510:
+                  red = 510 - i
+                  green = i - 255
+              elif 510 < i <= 765:
+                  green = 765 - i
+                  blue = i - 510
+              elif i > 765:
+                  i = 0
+              textColor = graphics.Color(red, green, blue)
           offscreen_canvas.Clear()
           len = graphics.DrawText(offscreen_canvas, font, pos, 10, textColor, self.count)
 
@@ -34,6 +52,7 @@ class Counter(object):
       #    if (pos + len < 0):
       #       pos = offscreen_canvas.width
           time.sleep(0.05)
+          i = i + 5
           offscreen_canvas = self.matrix.SwapOnVSync(offscreen_canvas)
 
   def process(self):
