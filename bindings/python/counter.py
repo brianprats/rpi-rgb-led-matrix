@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-print('works')
 import time
 import sys
 import requests
@@ -19,10 +18,11 @@ class Counter(object):
     offscreen_canvas = self.matrix.CreateFrameCanvas()
     font = graphics.Font()
     font.LoadFont("../../fonts/9x18.bdf")
-    textColor = graphics.Color(255, 255, 0)
     pos = 0
     color_pulse = True
-    i = 0
+    self.get_likes()
+    first_count = int(self.count)
+    #i = 0
     red = 0
     green = 0
     blue = 0
@@ -31,6 +31,8 @@ class Counter(object):
       self.get_likes()
       print(self.count)
       start = time.time()
+      i = 10*(int(self.count) - first_count)
+      print(i)
       while time.time()-start <= 15:
           if color_pulse == True:
               if i <= 255:
@@ -42,7 +44,7 @@ class Counter(object):
               elif 510 < i <= 765:
                   green = 765 - i
                   blue = i - 510
-              elif i > 765:
+              else:
                   i = 0
               textColor = graphics.Color(red, green, blue)
           offscreen_canvas.Clear()
@@ -52,7 +54,7 @@ class Counter(object):
       #    if (pos + len < 0):
       #       pos = offscreen_canvas.width
           time.sleep(0.05)
-          i = i + 5
+      #    i = i + 5
           offscreen_canvas = self.matrix.SwapOnVSync(offscreen_canvas)
 
   def process(self):
@@ -72,7 +74,7 @@ class Counter(object):
 
     try:
       #  loop
-      print("PrStartess CTRL-C to stop sample")
+      print("Press CTRL-C to stop sample")
       self.run()
 
     except KeyboardInterrupt:
