@@ -45,7 +45,7 @@ class Counter(object):
                   green = 765 - i
                   blue = i - 510
               else:
-                  i = 0
+                  first_count = int(self.count)
               textColor = graphics.Color(red, green, blue)
           offscreen_canvas.Clear()
           len = graphics.DrawText(offscreen_canvas, font, pos, 10, textColor, self.count)
